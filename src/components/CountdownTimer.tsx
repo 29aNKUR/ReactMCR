@@ -51,11 +51,12 @@ const CountdownTimer = () => {
 
   return (
     <div>
-      <h1>Stopwatch</h1>
-      <h1>{formatTime(time)}</h1>
-      <button onClick={handleStart}>Start</button>
+      <h1 className="flex justify-center font-bold text-2x">Stopwatch</h1>
+      <h1 className="flex justify-center">{formatTime(time)}</h1>
+      <div className="flex justify-center">      <button onClick={handleStart}>Start</button>
       <button onClick={handlePauseResume}>{isActive ? 'Pause' : 'Resume'}</button>
-      <button onClick={handleStop}>Stop</button>
+      <button onClick={handleStop}>Stop</button></div>
+
 
     </div>
   )
