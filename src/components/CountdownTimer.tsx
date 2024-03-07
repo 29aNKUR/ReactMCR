@@ -37,14 +37,22 @@ const CountdownTimer = () => {
     }
 
     return () => clearInterval(interval);
-  },[])
+  },[isActive])
     
+
+  const formatTime = (time: any) => {
+    const hours = Math.floor(time / 3600).toString().padStart(2, "0");
+    const minutes = Math.floor((time % 3600) / 60).toString().padStart(2, "0");
+    const seconds = (time % 60).toString().padStart(2, "0");
+
+    return `${hours}:${minutes}:${seconds}`;
+  }
 
 
   return (
     <div>
       <h1>Stopwatch</h1>
-      <h1>{time}</h1>
+      <h1>{formatTime(time)}</h1>
       <button onClick={handleStart}>Start</button>
       <button onClick={handlePauseResume}>{isActive ? 'Pause' : 'Resume'}</button>
       <button onClick={handleStop}>Stop</button>
