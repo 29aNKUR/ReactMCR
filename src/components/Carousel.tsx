@@ -11,40 +11,32 @@ const data = [
 
 
 const Carousel = () => {
-
-  const [image, setImage] = useState('');
   const [index, setIndex] = useState(0);
 
   const handleNext = () => {
-
-      if(index >=0 && index < data.length-1){
-        setIndex(index + 1);
-      } else {
-        setIndex(0)
-      }
-  }
+    setIndex((prevIndex) => (prevIndex + 1) % data.length);
+  };
 
   const handlePrev = () => {
-
-  }
+    setIndex((prevIndex) => (prevIndex - 1 + data.length) % data.length);
+  };
   
   return (
-    <div>
-      <div className="flex justify-center">
-        <div>
-          <button className="text-white bg-blue-800 px-4 py-1 rounded-md" onClick={handlePrev}>
-            Previous
-          </button>
-        </div>
+    <div className="min-h-screen flex items-center justify-center">
+      <div>
+        <button className="text-white bg-blue-800 px-4 py-1 rounded-md mr-4" onClick={handlePrev}>
+          Previous
+        </button>
+      </div>
 
-        {/* {data.map((image, index) => (
-          <img src={image} alt="photo" key={index} />
-        ))} */}
+      <div className="w-64 h-64 overflow-hidden">
+        <img src={data[index]} alt="" className="object-cover w-full h-full" />
+      </div>
 
-        <img src={data[index]} alt="" className="object-contain aspect-auto"/>
-        <div>
-          <button className="text-white bg-blue-800 px-4 py-1 rounded-md" onClick={handleNext}>Next</button>
-        </div>
+      <div>
+        <button className="text-white bg-blue-800 px-4 py-1 rounded-md ml-4" onClick={handleNext}>
+          Next
+        </button>
       </div>
     </div>
   );
